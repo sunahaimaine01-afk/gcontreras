@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-primary: #101010;
+    --bg-secondary: #171615;
+    --bg-card: #201E1B;
+    --text-primary: #F3EFE7;
+    --text-secondary: #B6B0A6;
+    --accent-champagne: #C69A72;
+    --accent-burgundy: #762B35;
+    --border-subtle: #38332E;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .font-editorial {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #101010;
+}
+::-webkit-scrollbar-thumb {
+  background: #2b2824;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C69A72;
+}
+
+/* Detailing Orbit Custom Cursor */
+@media (pointer: fine) {
+  .custom-cursor {
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
+                height 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.2s ease,
+                background-color 0.2s ease,
+                opacity 0.2s ease;
+  }
+}
+
+/* Subtle Champagne Bronze Button Sweep Effect */
+.btn-champagne-sweep {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+
+.btn-champagne-sweep::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(198, 154, 114, 0.25),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: none;
+}
+
+.btn-champagne-sweep:hover::after {
+  left: 150%;
+  transition: left 0.75s ease-in-out;
+}
+
+/* Card warm reflection & hover lift */
+.service-card-lift {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.25s ease, 
+              box-shadow 0.25s ease;
+}
+
+.service-card-lift:hover {
+  transform: translateY(-3px);
+  border-color: rgba(198, 154, 114, 0.45);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 15px -3px rgba(198, 154, 114, 0.08);
+}
