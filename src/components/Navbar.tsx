@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
-import { Phone, Instagram, Menu, X, ShieldCheck, Search } from 'lucide-react';
+import { Phone, Instagram, Menu, X } from 'lucide-react';
 import { BUSINESS_CONFIG } from '../config/business';
 
-interface NavbarProps {
-  onOpenAdmin: () => void;
-  onOpenLookup: () => void;
-}
-
-export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin, onOpenLookup }) => {
+export const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -50,7 +45,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin, onOpenLookup }) => 
           </a>
         </nav>
 
-        {/* Zone 3: Actions (Phone, Lookup, Booking CTA) */}
+        {/* Zone 3: Actions (Phone & Booking CTA) */}
         <div className="hidden sm:flex items-center gap-4 shrink-0">
           <a
             href={BUSINESS_CONFIG.telLink}
@@ -61,14 +56,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin, onOpenLookup }) => 
             <span className="tabular-nums">{BUSINESS_CONFIG.phone}</span>
           </a>
 
-          <button
-            onClick={onOpenLookup}
-            className="flex items-center gap-1.5 text-xs text-[#B6B0A6] hover:text-[#F3EFE7] px-2.5 py-1.5 transition-colors"
-            title="Check status of existing booking"
+          <a
+            href={BUSINESS_CONFIG.instagramUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 text-[#B6B0A6] hover:text-[#C69A72] transition-colors"
+            title="Instagram"
           >
-            <Search className="w-3.5 h-3.5 text-[#C69A72]" />
-            <span className="hidden md:inline">Track Booking</span>
-          </button>
+            <Instagram className="w-4 h-4" />
+          </a>
 
           <a
             href="#booking"
@@ -76,15 +72,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin, onOpenLookup }) => 
           >
             Book Your Detail
           </a>
-
-          <button
-            onClick={onOpenAdmin}
-            className="p-2 text-[#B6B0A6] hover:text-[#C69A72] transition-colors rounded-sm hover:bg-[#171615]"
-            title="Owner Portal"
-            aria-label="Owner Admin Login"
-          >
-            <ShieldCheck className="w-4 h-4" />
-          </button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -165,16 +152,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin, onOpenLookup }) => 
               <Instagram className="w-4 h-4" />
               Follow {BUSINESS_CONFIG.instagramHandle}
             </a>
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenLookup();
-              }}
-              className="flex items-center justify-center gap-2 text-xs text-[#B6B0A6] hover:text-[#F3EFE7] py-2"
-            >
-              <Search className="w-3.5 h-3.5 text-[#C69A72]" />
-              Lookup Booking Status
-            </button>
             <a
               href="#booking"
               onClick={() => setMobileMenuOpen(false)}
@@ -182,15 +159,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin, onOpenLookup }) => 
             >
               Book Your Detail
             </a>
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenAdmin();
-              }}
-              className="text-center text-xs text-[#B6B0A6]/70 py-1"
-            >
-              Owner Portal Login
-            </button>
           </div>
         </div>
       )}

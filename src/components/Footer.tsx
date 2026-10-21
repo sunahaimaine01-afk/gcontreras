@@ -1,13 +1,8 @@
 import React from 'react';
-import { Phone, Instagram, MapPin, ShieldCheck, ArrowUp } from 'lucide-react';
+import { Phone, Instagram, MapPin, ArrowUp } from 'lucide-react';
 import { BUSINESS_CONFIG } from '../config/business';
 
-interface FooterProps {
-  onOpenAdmin: () => void;
-  onOpenLookup: () => void;
-}
-
-export const Footer: React.FC<FooterProps> = ({ onOpenAdmin, onOpenLookup }) => {
+export const Footer: React.FC = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -83,9 +78,9 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin, onOpenLookup }) => 
                 </a>
               </li>
               <li>
-                <button onClick={onOpenLookup} className="hover:text-[#C69A72] transition-colors text-left">
-                  Track Booking Status
-                </button>
+                <a href="#booking" className="hover:text-[#F3EFE7] transition-colors">
+                  Book Your Detail
+                </a>
               </li>
             </ul>
           </div>
@@ -113,16 +108,8 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin, onOpenLookup }) => 
 
         {/* Bottom Bar */}
         <div className="pt-6 border-t border-[#38332E] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#B6B0A6]">
-          <div className="flex items-center gap-3">
+          <div>
             <span>© {new Date().getFullYear()} {BUSINESS_CONFIG.name}. All rights reserved.</span>
-            <span className="text-[#38332E]">·</span>
-            <button
-              onClick={onOpenAdmin}
-              className="hover:text-[#C69A72] flex items-center gap-1 transition-colors"
-            >
-              <ShieldCheck className="w-3.5 h-3.5 text-[#C69A72]" />
-              <span>Owner Portal</span>
-            </button>
           </div>
 
           <button

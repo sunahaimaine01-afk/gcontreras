@@ -8,15 +8,11 @@ import { Gallery } from './components/Gallery';
 import { ServiceAreas } from './components/ServiceAreas';
 import { BookingForm } from './components/BookingForm';
 import { Footer } from './components/Footer';
-import { LookupModal } from './components/LookupModal';
-import { AdminDashboard } from './components/AdminDashboard';
 import { DetailingCursor } from './components/DetailingCursor';
 
 export default function App() {
   const [selectedCategory, setSelectedCategory] = useState<string>('small');
   const [selectedAddonIds, setSelectedAddonIds] = useState<string[]>([]);
-  const [isAdminOpen, setIsAdminOpen] = useState(false);
-  const [isLookupOpen, setIsLookupOpen] = useState(false);
 
   const handleSelectCategory = (categoryId: string) => {
     setSelectedCategory(categoryId);
@@ -44,10 +40,7 @@ export default function App() {
       <DetailingCursor />
 
       {/* Top Bar Navigation */}
-      <Navbar
-        onOpenAdmin={() => setIsAdminOpen(true)}
-        onOpenLookup={() => setIsLookupOpen(true)}
-      />
+      <Navbar />
 
       {/* Main Content Sections */}
       <main className="flex-1">
@@ -75,20 +68,7 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <Footer
-        onOpenAdmin={() => setIsAdminOpen(true)}
-        onOpenLookup={() => setIsLookupOpen(true)}
-      />
-
-      {/* Modals */}
-      <LookupModal
-        isOpen={isLookupOpen}
-        onClose={() => setIsLookupOpen(false)}
-      />
-      <AdminDashboard
-        isOpen={isAdminOpen}
-        onClose={() => setIsAdminOpen(false)}
-      />
+      <Footer />
     </div>
   );
 }
